@@ -5,6 +5,7 @@ import carsWindow
 import connect
 import enterWindow
 import mastersWindow
+import proceduresWindow
 import servicesWindow
 import usersWindow
 import worksWindow
@@ -14,16 +15,16 @@ class StartWindow(QWidget):
     def __init__(self, con):
         super().__init__()
         self.con = con
-        self.setGeometry(520, 300, 400, 200)
+        self.setGeometry(520, 300, 400, 220)
         self.setFixedSize(self.size())
         self.setWindowTitle('Главное меню')
 
-        # self.procWindow = procedureWindow.procWindow(self.con)
         self.worksWindow = worksWindow.worksWindow(self.con)
         self.carsWindow = carsWindow.carsWindow(self.con)
         self.mastersWindow = mastersWindow.mastersWindow(self.con)
         self.servicesWindow = servicesWindow.servicesWindow(self.con)
         self.usersWindow = usersWindow.usersWindow(self.con)
+        self.proceduresWindow = proceduresWindow.proceduresWindow(self.con)
 
         titleLabel = QLabel('Выберите таблицу', self)
         titleLabel.move(135, 30)
@@ -40,7 +41,7 @@ class StartWindow(QWidget):
         logout_btn = QPushButton('Выход', self)
         logout_btn.setToolTip('Log out')
         logout_btn.resize(100, 100)
-        logout_btn.move(140, 150)
+        logout_btn.move(140, 170)
         logout_btn.resize(130, 35)
         logout_btn.setFont(QFont('Helvetica', 14))
         logout_btn.clicked.connect(self.LogOutButtonClicked)
@@ -48,7 +49,7 @@ class StartWindow(QWidget):
 
     def init_main_comb(self):
         self.main_comb.clear()
-        self.main_comb.addItems(['Мастера', 'Автомобили', 'Услуги', 'Работы', 'Пользователи'])
+        self.main_comb.addItems(['Мастера', 'Автомобили', 'Услуги', 'Работы', 'Пользователи', 'Процедуры'])
         self.main_comb.setCurrentIndex(0)
 
     def LogOutButtonClicked(self):
@@ -56,7 +57,7 @@ class StartWindow(QWidget):
         self.mastersWindow.close()
         self.carsWindow.close()
         self.servicesWindow.close()
-    #     self.procWindow.close()
+        self.proceduresWindow.close()
         self.worksWindow.close()
         self.enterWindow = enterWindow.EnterWindow()
         connect.shutDownConnection(self.con)
@@ -73,8 +74,8 @@ class StartWindow(QWidget):
             self.WorksButtonClicked()
         if self.main_comb.currentText() == 'Пользователи':
             self.UsersButtonClicked()
-        # if self.main_comb.currentText() == 'Процедуры':
-        #     self.ProcButtonClicked()
+        if self.main_comb.currentText() == 'Процедуры':
+            self.ProceduresButtonClicked()
         # self.update_edits()
 
     def MastersButtonClicked(self):
@@ -92,6 +93,9 @@ class StartWindow(QWidget):
         if self.usersWindow.isVisible():
             self.usersWindow.close()
 
+        if self.proceduresWindow.isVisible():
+            self.proceduresWindow.close()
+
     def CarsButtonClicked(self):
         self.carsWindow.show()
 
@@ -106,6 +110,9 @@ class StartWindow(QWidget):
 
         if self.usersWindow.isVisible():
             self.usersWindow.close()
+
+        if self.proceduresWindow.isVisible():
+            self.proceduresWindow.close()
 
     def ServicesButtonClicked(self):
         self.servicesWindow.show()
@@ -122,6 +129,9 @@ class StartWindow(QWidget):
         if self.usersWindow.isVisible():
             self.usersWindow.close()
 
+        if self.proceduresWindow.isVisible():
+            self.proceduresWindow.close()
+
     def WorksButtonClicked(self):
         self.worksWindow.show()
 
@@ -137,6 +147,9 @@ class StartWindow(QWidget):
         if self.usersWindow.isVisible():
             self.usersWindow.close()
 
+        if self.proceduresWindow.isVisible():
+            self.proceduresWindow.close()
+
     def UsersButtonClicked(self):
         self.usersWindow.show()
 
@@ -151,5 +164,27 @@ class StartWindow(QWidget):
 
         if self.worksWindow.isVisible():
             self.worksWindow.close()
+
+        if self.proceduresWindow.isVisible():
+            self.proceduresWindow.close()
+
+    def ProceduresButtonClicked(self):
+        self.proceduresWindow.show()
+
+        if self.mastersWindow.isVisible():
+            self.mastersWindow.close()
+
+        if self.carsWindow.isVisible():
+            self.carsWindow.close()
+
+        if self.servicesWindow.isVisible():
+            self.servicesWindow.close()
+
+        if self.worksWindow.isVisible():
+            self.worksWindow.close()
+
+        if self.usersWindow.isVisible():
+            self.usersWindow.close()
+
 
 
