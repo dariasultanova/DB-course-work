@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QGridLayout, QWidget, QPushButton, QToolTip, QLabel, QComboBox, QLineEdit, QErrorMessage, QMessageBox, QRadioButton, QGroupBox, QVBoxLayout
+from PyQt5.QtWidgets import QWidget, QPushButton, QLabel, QComboBox
 from PyQt5.QtGui import *
 
 import carsWindow
@@ -170,6 +170,7 @@ class StartWindow(QWidget):
 
     def ProceduresButtonClicked(self):
         self.proceduresWindow.show()
+        self.close()
 
         if self.mastersWindow.isVisible():
             self.mastersWindow.close()
